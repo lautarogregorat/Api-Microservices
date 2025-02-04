@@ -19,6 +19,7 @@
     <module>orderService</module>
     <module>inventoryService</module>
     <module>gateway</module>
+    <module>notification-service</module>
   </modules>
 
   <properties>
