@@ -2,6 +2,7 @@ target/
 docker/mysqlInventory/mysql_data
 docker/mysqlOrder/mysql_data
 docker/mysql_keycloak_data
+docker/data/mongodb
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
