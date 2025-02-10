@@ -1,0 +1,15 @@
+services:
+  mysqlInventory:
+    image: mysql:8.4
+    container_name: inventoryService
+    ports:
+      - "3307:3306"
+    environment:
+      # Cargar variables de entorno desde el archivo .env
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - ./data/mysql_data:/var/lib/mysql
+      - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
