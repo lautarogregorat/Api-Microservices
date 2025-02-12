@@ -17,7 +17,7 @@ spec:
           image: quay.io/keycloak/keycloak:24.0.1
           ports:
             - containerPort: 8080
-          args: ["start-dev", "--import-realm"]
+          args: ["start-dev", "--import-realm", "--hostname-strict=false", "--hostname-strict-https=false"]
           env:
             - name: DB_VENDOR
               valueFrom:
@@ -54,6 +54,14 @@ spec:
                 secretKeyRef:
                   key: KEYCLOAK_ADMIN_PASSWORD
                   name: keycloak-secrets
+            - name: KC_PROXY
+              value: "edge"
+            - name: KC_HTTP_ENABLED
+              value: "true"
+            - name: KC_HOSTNAME_STRICT
+              value: "false"
+            - name: KC_HOSTNAME_STRICT_HTTPS
+              value: "false"
           volumeMounts:
             - name: keycloak-realm
               mountPath: /opt/keycloak/data/import
@@ -67,6 +75,7 @@ kind: Service
 metadata:
   name: keycloak
 spec:
+  type: LoadBalancer
   selector:
     app: keycloak
   ports:
